@@ -67,7 +67,7 @@ placeholder="search..." />
     <ul>
      {this.state.animals.map(animal => {
        return (
-       <Button key={animal.id} animal={animal} />
+       <Button key={animal.id} animal={animal} getAllTheAnimal={this.getAllTheAnimal} />
       // <li key={animal.id}>A {animal.species} can be seen at {animal.last_seen_location} <p>It has been seen {animal.seen_count} times</p></li>
        )
     })}
