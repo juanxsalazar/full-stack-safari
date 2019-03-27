@@ -1,1 +1,2 @@
-# Full Stack Safari
+# About Full Stack Safari
+This is my first project where I learned to incorporate the back end that I've learned and use the API that I've created in order to create some buttons that calls upon the API.

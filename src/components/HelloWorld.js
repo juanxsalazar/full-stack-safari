@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Form from 'react-jsonschema-form'
+
 
 class HelloWorld extends Component {
 
@@ -28,9 +30,25 @@ class HelloWorld extends Component {
     })
   }
   
+  onSubmit = (form) => {
+    console.log (form)
+  }
   render() {
+    const schema = {
+      title: 'Animals',
+      type: 'object',
+      required: ['name'],
+      properties: {
+        species: { type: 'string', title: 'Name', default: '' },
+        last_seen_location: { type: 'string', title: 'LastLocation', default: '' },
+        seen_count: { type: 'integer', title: 'SeenCount' }
+      }
+    }
+
     return <>
-    <p>Animal Species Search by location:</p>
+    <p>New Form:</p>
+    <Form schema={schema} onSubmit={this.submit} />
+    <p>Animal Species Search by Location:</p>
 <input 
 value={this.state.name} 
 onChange={this.SearchChange}
