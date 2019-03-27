@@ -20,6 +20,16 @@ class App extends Component {
     this.getAllTheAnimal()
   }
 
+  incrementSeenCount = () => {
+    let allAnimalsListed = this.state.animals
+    let individualAnimalSeenCount = []
+    let allAnimalSeenSum = 0
+    for (let i = 0; i < allAnimalsListed.length; i++) {
+      allAnimalSeenSum += allAnimalsListed[i].seen_count
+    }
+    return allAnimalSeenSum
+  }
+  
   SearchChange = event => {
     const name = event.target.value
 
@@ -57,7 +67,7 @@ class App extends Component {
     <>
     <p>Safari, New Animals!</p>
     <Form schema={schema} onSubmit={this.submit} />
-
+    <h4>There's a total of  {this.incrementSeenCount()} animals seen at the safari.</h4>
     <p>Animal Species, Search by Location:</p>
 <input 
 value={this.state.name} 

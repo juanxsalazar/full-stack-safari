@@ -11,12 +11,12 @@ this.props.getAllTheAnimal()
 
     render() {
         return (
-        
+        <>
                 <li>A {this.props.animal.species} can be seen at {this.props.animal.last_seen_location} 
                 <button onClick={this.delete}>Delete Animal</button>
                  <p>It has been seen {this.props.animal.seen_count} times</p>
                  </li>
-
+</>
                 
         )
     }
