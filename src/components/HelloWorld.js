@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Form from 'react-jsonschema-form'
-
+import axios from 'axios'
 
 class HelloWorld extends Component {
 
@@ -9,7 +9,9 @@ class HelloWorld extends Component {
     name: ''
   }
 
+  getAllTheAnimal = () => {
 
+  }
   componentDidMount() {
     fetch('http://localhost:3000/animals')
     .then(response => response.json())
@@ -30,23 +32,32 @@ class HelloWorld extends Component {
     })
   }
   
-  onSubmit = (form) => {
-    console.log (form)
-  }
+  Submit = form => {
+    axios
+    .post('http://localhost:3000/animals', {animal: form.formData})
+    .then(response => {
+    axios.get('http://localhost:3000/animals').then(response => {
+    this.setState ({ animals: response}) 
+    })
+  })
+}
+  
+
+
   render() {
     const schema = {
       title: 'Animals',
       type: 'object',
-      required: ['name'],
       properties: {
-        species: { type: 'string', title: 'Name', default: '' },
-        last_seen_location: { type: 'string', title: 'LastLocation', default: '' },
-        seen_count: { type: 'integer', title: 'SeenCount' }
+      species: { type: 'string', title: 'Name', default: '' },
+      last_seen_location: { type: 'string', title: 'Location', default: '' },
+      seen_count: { type: 'integer', title: 'Seen Count' }
       }
     }
 
-    return <>
-    <p>New Form:</p>
+    return (
+    <>
+    <p>Safari, New Animals!</p>
     <Form schema={schema} onSubmit={this.submit} />
     <p>Animal Species Search by Location:</p>
 <input 
@@ -60,6 +71,7 @@ placeholder="search..." />
      })}
     </ul>
     </>
+    )
   }
 }
 
